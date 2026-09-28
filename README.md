@@ -33,8 +33,8 @@ this paragraph with them:
 ```markdown
 | Home | Detail | Add |
 | --- | --- | --- |
-| ![Home](docs/assets/screen-home.jpg) | ![cardTinder](docs/assets/screen-cardTinder.png) | ![cardCarousel](docs/assets/screen-cardCarousel.png) |
 ```
+| ![Home](docs/assets/screen-home.jpg) | ![cardTinder](docs/assets/screen-cardTinder.jpg) | ![cardCarousel](docs/assets/screen-cardCarousel.jpg) |
 
 A repo without screenshots reads as abandoned, whatever the code says.
 
@@ -44,7 +44,7 @@ Three to five bullets. What can a user actually do?
 
 - Swipe Cards to Select
 - Flip and Unflip Cards
-- ...
+- View Cards Expounded Details
 
 ## Built with
 
