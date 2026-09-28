@@ -7,72 +7,84 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: appBar(),
-      backgroundColor: Colors.white,
+      appBar: appBar(context),
+      backgroundColor: Theme.of(context).colorScheme.surface,
       body: Column(
         children: [
           Container(
-            margin: EdgeInsets.only(top: 40, left: 20, right: 20),
+            margin: const EdgeInsets.only(top: 40, left: 20, right: 20),
             decoration: BoxDecoration(
-              color: Colors.white,
+              color: Theme.of(context).colorScheme.surface,
               borderRadius: BorderRadius.circular(10),
             ),
             child: TextField(
+              style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                color: Theme.of(context).colorScheme.onSurface,
+              ),
               decoration: InputDecoration(
                 prefixIcon: Padding(
-                  padding: EdgeInsets.all(12.0),
-                  child: Icon(Icons.search),
+                  padding: const EdgeInsets.all(12.0),
+                  child: Icon(
+                    Icons.search,
+                    color: Theme.of(context).colorScheme.onSurface,
+                  ),
                 ),
-                fillColor: const Color.fromARGB(255, 212, 212, 212),
+                fillColor: Theme.of(context).colorScheme.surface,
                 filled: true,
                 hintText: 'Search',
-                border: OutlineInputBorder(),
+                hintStyle: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                  color: Theme.of(
+                    context,
+                  ).colorScheme.onSurface.withOpacity(0.7),
+                ),
+                enabledBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(10),
+                  borderSide: BorderSide(
+                    color: Theme.of(context).colorScheme.onSurface,
+                  ),
+                ),
+                focusedBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(10),
+                  borderSide: BorderSide(
+                    color: Theme.of(context).colorScheme.onSurface,
+                    width: 2,
+                  ),
+                ),
               ),
             ),
           ),
         ],
       ),
       bottomNavigationBar: SafeArea(
-        child: TextButton(
-          style: ButtonStyle(
-            foregroundColor: WidgetStateProperty.all<Color>(Colors.blue),
-            overlayColor: WidgetStateProperty.resolveWith<Color?>((
-              Set<WidgetState> states,
-            ) {
-              if (states.contains(WidgetState.hovered)) {
-                return Colors.blue.withValues(alpha: 0.04);
-              }
-              if (states.contains(WidgetState.focused) ||
-                  states.contains(WidgetState.pressed)) {
-                return Colors.blue.withValues(alpha: 0.12);
-              }
-              return null; // Defer to the widget's default.
-            }),
+        child: Padding(
+          padding: const EdgeInsets.fromLTRB(16, 0, 16, 16),
+          child: FilledButton(
+            style: FilledButton.styleFrom(
+              backgroundColor: Theme.of(context).colorScheme.onSurface,
+              foregroundColor: Theme.of(context).colorScheme.surface,
+              minimumSize: const Size.fromHeight(52),
+            ),
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => cardTinder()),
+              );
+            },
+            child: const Text('Start Reading'),
           ),
-          onPressed: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => cardTinder()),
-            );
-          },
-          child: Text('Start Reading'),
         ),
       ),
     );
   }
 
-  AppBar appBar() {
+  AppBar appBar(BuildContext context) {
     return AppBar(
       title: Text(
-        "Angel's Tarot App",
-        style: TextStyle(
-          fontFamily: 'Merriweather',
-          fontSize: 24,
-          color: Colors.black,
-        ),
+        "TarotAngel",
+        style: Theme.of(context).textTheme.headlineSmall,
       ),
       centerTitle: true,
-      backgroundColor: Colors.white,
+      backgroundColor: Theme.of(context).colorScheme.surface,
       elevation: 0.0,
     );
   }

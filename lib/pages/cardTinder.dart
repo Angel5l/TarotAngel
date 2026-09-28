@@ -19,15 +19,21 @@ class _cardTinder extends State<cardTinder> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(leading: BackButton(), title: Text('Angel Tarot')),
-      backgroundColor: Colors.white,
+      appBar: AppBar(
+        leading: BackButton(),
+        title: Text(
+          'TarotAngel',
+          style: Theme.of(context).textTheme.headlineSmall,
+        ),
+      ),
+      backgroundColor: Theme.of(context).colorScheme.surface,
       body: Center(
         child: Column(
           children: [
             Container(child: Text('Cards: $counter')),
             SizedBox(
-              height: 400,
-              width: 300,
+              height: 460,
+              width: 320,
               child: CardSwiper(
                 cardBuilder: (context, index, horizontal, vertical) {
                   return ClipRRect(
@@ -48,17 +54,26 @@ class _cardTinder extends State<cardTinder> {
                 },
               ),
             ),
+            const SizedBox(height: 12),
             if (counter > 0)
-              TextButton(
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => cardCarousel(number: counter),
-                    ),
-                  );
-                },
-                child: Text('To Reading'),
+              SizedBox(
+                width: 180,
+                child: FilledButton(
+                  style: FilledButton.styleFrom(
+                    backgroundColor: Theme.of(context).colorScheme.onSurface,
+                    foregroundColor: Theme.of(context).colorScheme.surface,
+                    minimumSize: const Size.fromHeight(48),
+                  ),
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => cardCarousel(number: counter),
+                      ),
+                    );
+                  },
+                  child: const Text('To Reading'),
+                ),
               ),
           ],
         ),

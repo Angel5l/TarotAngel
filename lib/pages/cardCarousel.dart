@@ -1,7 +1,7 @@
-import 'dart:math';
-
+import '/pages/tarotDetail.dart';
 import 'package:flutter/material.dart';
 import '/data/tarotCardModel.dart';
+import '../data/tarotCardWidget.dart';
 
 class cardCarousel extends StatefulWidget {
   const cardCarousel({super.key, required this.number});
@@ -23,22 +23,42 @@ class _cardCarousel extends State<cardCarousel> {
     cardFlipped.addAll(List<bool>.filled(cardsPicked.length, false));
   }
 
-  void _handleCardFlip(int index, bool value) {
-    setState(() {
-      cardFlipped[index] = value;
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(leading: BackButton(), title: const Text('Angel Tarot')),
-      backgroundColor: Colors.white,
+      appBar: AppBar(
+        leading: const BackButton(),
+        title: Text(
+          'TarotAngel',
+          style: Theme.of(context).textTheme.headlineSmall,
+        ),
+      ),
+      backgroundColor: Theme.of(context).colorScheme.surface,
       body: SafeArea(
         child: ListView.builder(
           padding: const EdgeInsets.all(16),
-          itemCount: cardsPicked.length,
+          itemCount:
+              cardsPicked.length +
+              (cardFlipped.every((flipped) => flipped) ? 1 : 0),
           itemBuilder: (context, index) {
+            if (index == cardsPicked.length) {
+              return Padding(
+                padding: const EdgeInsets.only(top: 8, bottom: 16),
+                child: FilledButton.icon(
+                  key: const Key('homeButton'),
+                  style: FilledButton.styleFrom(
+                    backgroundColor: Theme.of(context).colorScheme.onSurface,
+                    foregroundColor: Theme.of(context).colorScheme.surface,
+                  ),
+                  icon: const Icon(Icons.home_outlined),
+                  label: const Text('Home'),
+                  onPressed: () {
+                    Navigator.of(context).popUntil((route) => route.isFirst);
+                  },
+                ),
+              );
+            }
+
             final card = cardsPicked[index];
             final faceImage = card.orientation
                 ? card.imagePath
@@ -53,7 +73,7 @@ class _cardCarousel extends State<cardCarousel> {
                     Text(
                       '${card.name} • ${card.orientation ? 'Upright' : 'Reversed'}',
                       textAlign: TextAlign.center,
-                      style: const TextStyle(
+                      style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                         fontSize: 18,
                         fontWeight: FontWeight.w600,
                       ),
@@ -63,119 +83,31 @@ class _cardCarousel extends State<cardCarousel> {
                     cardFaceImage: faceImage,
                     cardBackImage: 'assets/images/cardFront.png',
                     isFlipped: cardFlipped[index],
-                    onFlip: (value) => _handleCardFlip(index, value),
+                    onFlip: (flipped) {
+                      setState(() {
+                        cardFlipped[index] = flipped;
+                      });
+                    },
+                    onPressed: cardFlipped[index]
+                        ? () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (_) => tarotDetails(card),
+                              ),
+                            );
+                          }
+                        : null,
                   ),
                   const SizedBox(height: 12),
                   if (cardFlipped[index])
                     Text(
                       card.orientation ? card.description : card.descriptionR,
                       textAlign: TextAlign.center,
-                      style: const TextStyle(fontSize: 15),
+                      style: Theme.of(context).textTheme.bodyMedium,
                     ),
                 ],
               ),
-            );
-          },
-        ),
-      ),
-    );
-  }
-}
-
-class TarotCardWidget extends StatefulWidget {
-  final String cardFaceImage;
-  final String cardBackImage;
-  final bool isFlipped;
-  final ValueChanged<bool>? onFlip;
-
-  const TarotCardWidget({
-    super.key,
-    required this.cardFaceImage,
-    required this.cardBackImage,
-    required this.isFlipped,
-    this.onFlip,
-  });
-
-  @override
-  State<TarotCardWidget> createState() => TarotCardWidgetState();
-}
-
-class TarotCardWidgetState extends State<TarotCardWidget>
-    with SingleTickerProviderStateMixin {
-  late final AnimationController _controller;
-  bool _isFlipped = false;
-
-  @override
-  void initState() {
-    super.initState();
-    _controller = AnimationController(
-      vsync: this,
-      duration: const Duration(milliseconds: 600),
-    );
-    _isFlipped = widget.isFlipped;
-    if (_isFlipped) {
-      _controller.value = 1;
-    }
-  }
-
-  @override
-  void didUpdateWidget(covariant TarotCardWidget oldWidget) {
-    super.didUpdateWidget(oldWidget);
-    if (oldWidget.isFlipped != widget.isFlipped) {
-      _isFlipped = widget.isFlipped;
-      if (_isFlipped) {
-        _controller.forward();
-      } else {
-        _controller.reverse();
-      }
-    }
-  }
-
-  void _toggleCard() {
-    final nextValue = !_isFlipped;
-    if (nextValue) {
-      _controller.forward();
-    } else {
-      _controller.reverse();
-    }
-    _isFlipped = nextValue;
-    widget.onFlip?.call(nextValue);
-  }
-
-  @override
-  void dispose() {
-    _controller.dispose();
-    super.dispose();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: _toggleCard,
-      child: SizedBox(
-        height: 420,
-        width: 280,
-        child: AnimatedBuilder(
-          animation: _controller,
-          builder: (context, child) {
-            final angle = _controller.value * pi;
-            final isPastHalfway = angle > pi / 2;
-
-            return Transform(
-              transform: Matrix4.identity()
-                ..setEntry(3, 2, 0.001)
-                ..rotateY(angle),
-              alignment: Alignment.center,
-              child: isPastHalfway
-                  ? Transform(
-                      transform: Matrix4.identity()..rotateY(pi),
-                      alignment: Alignment.center,
-                      child: Image.asset(
-                        widget.cardFaceImage,
-                        fit: BoxFit.cover,
-                      ),
-                    )
-                  : Image.asset(widget.cardBackImage, fit: BoxFit.cover),
             );
           },
         ),
