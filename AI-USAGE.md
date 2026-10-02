@@ -42,7 +42,7 @@ a GestureDetector with a .call function is added to the Widget.
 - **What I asked for:** Due to the amount of trail and errors, I asked the code to clean up the pages while also retaining all of its functionality.
 - **What it gave back:** It deleted some parts of the tarotCardWidget.dart.
 - **What I kept, what I changed, and why:** The code mostly remained intact, it was just some of the previous attempts were retained. I kept what the AI thinks is not used. It is so that the code itself is not needlessly using space and processing power on unnecessary parts.
-- **Commit:** https://github.com/YOUR-USERNAME/YOUR-REPO/commit/SHA
+- **Commit:** https://github.com/Angel5l/TarotAngel/commit/42a6711cdc4ce805ab841bf3517963c871375c2b
 
 ### 2026-09-28 - Working Search Bar
 
@@ -51,7 +51,7 @@ a GestureDetector with a .call function is added to the Widget.
 - **What it gave back:** It gave back a functioning search bar that also accepts arabic numerals for finding cards that uses roman numerals.
 - **What I kept, what I changed, and why:**
 The search bar was empty when I made it, a lot of the code are from the AI to make the search bar happen within the short timespan.
-- **Commit:** https://github.com/YOUR-USERNAME/YOUR-REPO/commit/SHA
+- **Commit:** https://github.com/Angel5l/TarotAngel/commit/42a6711cdc4ce805ab841bf3517963c871375c2b
 
 ### 2026-09-28 - Image Resolution Cap
 
@@ -60,7 +60,7 @@ The search bar was empty when I made it, a lot of the code are from the AI to ma
 - **What it gave back:** it added a limit to the resolution of the images.
 - **What I kept, what I changed, and why:**
 The code is kept the same, only that some code was added to make sure there is a cap to how much the images take. It is to allow the app to have a better performance when testing on an actual mobile device.
-- **Commit:** https://github.com/YOUR-USERNAME/YOUR-REPO/commit/SHA
+- **Commit:** https://github.com/Angel5l/TarotAngel/commit/42a6711cdc4ce805ab841bf3517963c871375c2b
 
 
 
@@ -74,7 +74,7 @@ scores zero.
 - **What it gave me:** The background image at the background of the pages
 - **What was wrong with it:**  the image was small and was placed at the right bottom rather than the middle of the screen 
 - **What I did instead:** I put Center() on the code given and had to change width and height values alongside added opacity.
-- **Commit:** https://github.com/YOUR-USERNAME/YOUR-REPO/commit/SHA
+- **Commit:** https://github.com/Angel5l/TarotAngel/commit/42a6711cdc4ce805ab841bf3517963c871375c2b
 
 ### Case 2 - Flipping Animation
 
@@ -134,6 +134,6 @@ imagePathR - links where the image for reverse is located
 ### The AI-written part I understand best
 
 - **File:** tarotDetail.dart
-- **Commit:**
+- **Commit:** https://github.com/Angel5l/TarotAngel/commit/6945bf20fd8495f32a7d62108ac01c45ec6005b9#diff-92e00e8166a16dbbae7ee11347203dfe17cca13ad1e505f75400ca935d294688
 - **What it does and why we kept it:**
 getCardDetails function maps the information within the tarotDetails_json.dart. With that it uses the id of the card used as the argument when pushed during the cardCarousel.dart page. the id is then placed into the variable selectedDetails, in which finds the information by using the ['argument'] to place at the appropriate final variable. These variables are then used as children for the widgets whenever they expand to showcase the data gotten.
