@@ -23,6 +23,10 @@ class tarotDetails extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final imageCacheHeight =
+        (MediaQuery.sizeOf(context).height *
+                MediaQuery.devicePixelRatioOf(context))
+            .round();
     final selectedDetails = getCardDetails(selectedCard?.id ?? 0);
     final detailDescription = selectedDetails['description'] as String? ?? '';
     final detailElement = selectedDetails['element'] as String? ?? '';
@@ -48,8 +52,14 @@ class tarotDetails extends StatelessWidget {
           borderRadius: BorderRadius.circular(12),
           image: DecorationImage(
             image: selectedCard!.orientation
-                ? AssetImage(selectedCard!.imagePath)
-                : AssetImage(selectedCard!.imagePathR),
+                ? ResizeImage(
+                    AssetImage(selectedCard!.imagePath),
+                    height: imageCacheHeight,
+                  )
+                : ResizeImage(
+                    AssetImage(selectedCard!.imagePathR),
+                    height: imageCacheHeight,
+                  ),
             fit: BoxFit.cover,
             opacity: 0.6,
           ),
@@ -61,16 +71,65 @@ class tarotDetails extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Center(
-                  child: Text(
-                    selectedCard!.name,
-                    textAlign: TextAlign.center,
-                    style: Theme.of(context).textTheme.headlineSmall?.copyWith(
-                      color: Theme.of(context).colorScheme.onSurface,
-                    ),
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      DecoratedBox(
+                        decoration: BoxDecoration(
+                          color: Theme.of(
+                            context,
+                          ).colorScheme.surface.withValues(alpha: 0.7),
+                          borderRadius: BorderRadius.circular(2),
+                        ),
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: 12,
+                            vertical: 6,
+                          ),
+                          child: Text(
+                            selectedCard!.name,
+                            textAlign: TextAlign.center,
+                            style: Theme.of(context).textTheme.headlineSmall
+                                ?.copyWith(
+                                  color: Theme.of(
+                                    context,
+                                  ).colorScheme.onSurface,
+                                ),
+                          ),
+                        ),
+                      ),
+                      const SizedBox(height: 8),
+                      DecoratedBox(
+                        decoration: BoxDecoration(
+                          color: Theme.of(
+                            context,
+                          ).colorScheme.surface.withValues(alpha: 0.7),
+                          borderRadius: BorderRadius.circular(2),
+                        ),
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: 10,
+                            vertical: 4,
+                          ),
+                          child: Text(
+                            "${selectedCard!.type}"
+                            " - ${detailElement.isNotEmpty ? detailElement : 'Unknown Element'}",
+                            style: Theme.of(context).textTheme.bodyMedium
+                                ?.copyWith(
+                                  color: Theme.of(
+                                    context,
+                                  ).colorScheme.onSurface,
+                                ),
+                          ),
+                        ),
+                      ),
+                    ],
                   ),
                 ),
                 const SizedBox(height: 16),
                 Card(
+                  color: appTheme.colorScheme.surface,
+                  surfaceTintColor: Colors.transparent,
                   clipBehavior: Clip.antiAlias,
                   child: Theme(
                     data: appTheme.copyWith(dividerColor: Colors.transparent),
@@ -83,7 +142,7 @@ class tarotDetails extends StatelessWidget {
                         ),
                       ),
                       leading: CircleAvatar(
-                        radius: 12,
+                        radius: 6,
                         backgroundColor: () {
                           switch (detailElement.toLowerCase()) {
                             case 'water':
@@ -119,6 +178,8 @@ class tarotDetails extends StatelessWidget {
                 ),
                 const SizedBox(height: 16),
                 Card(
+                  color: appTheme.colorScheme.surface,
+                  surfaceTintColor: Colors.transparent,
                   clipBehavior: Clip.antiAlias,
                   child: Theme(
                     data: appTheme.copyWith(dividerColor: Colors.transparent),
@@ -131,7 +192,7 @@ class tarotDetails extends StatelessWidget {
                         ),
                       ),
                       leading: CircleAvatar(
-                        radius: 12,
+                        radius: 6,
                         backgroundColor: () {
                           switch (detailElement.toLowerCase()) {
                             case 'water':
@@ -167,6 +228,8 @@ class tarotDetails extends StatelessWidget {
                 ),
                 const SizedBox(height: 16),
                 Card(
+                  color: appTheme.colorScheme.surface,
+                  surfaceTintColor: Colors.transparent,
                   clipBehavior: Clip.antiAlias,
                   child: Theme(
                     data: appTheme.copyWith(dividerColor: Colors.transparent),
@@ -179,7 +242,7 @@ class tarotDetails extends StatelessWidget {
                         ),
                       ),
                       leading: CircleAvatar(
-                        radius: 12,
+                        radius: 6,
                         backgroundColor: () {
                           switch (detailElement.toLowerCase()) {
                             case 'water':

@@ -8,6 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 import 'package:final_project/main.dart';
+import 'package:final_project/pages/home.dart';
 
 void main() {
   testWidgets('home screen shows its title and counts taps', (tester) async {
@@ -23,5 +24,26 @@ void main() {
     await tester.pump();
 
     expect(find.text('Taps: 1'), findsOneWidget);
+  });
+
+  testWidgets('home search filters tarot cards', (tester) async {
+    await tester.pumpWidget(
+      const MaterialApp(home: HomePage()),
+    );
+
+    await tester.enterText(find.byType(TextField), 'High Priestess');
+    await tester.pump();
+
+    expect(find.text('The High Priestess'), findsOneWidget);
+
+    await tester.enterText(find.byType(TextField), '4 of Pentacles');
+    await tester.pump();
+
+    expect(find.text('IV of Pentacles'), findsOneWidget);
+
+    await tester.enterText(find.byType(TextField), 'not a tarot card');
+    await tester.pump();
+
+    expect(find.text('No cards found'), findsOneWidget);
   });
 }

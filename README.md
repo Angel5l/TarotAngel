@@ -104,15 +104,13 @@ Required section. Two or three honest sentences:
 ## Status and what is next
 
 What works:
-cardTinder
-cardCarousel
+The Search Bar, Card Tinder, Card Carousel, TarotCardWidget, TarotDetail Widgets.
 
 What is half done:
-tarotDetail
+None
 
 What will be done next:
-tarotDetail
-tarotDetail_json
+Documentations
 
 ## Credits
 
@@ -122,7 +120,7 @@ flutter.dev | flutter_svg
 
 ## AI use
 
-AI was used heavily within the debugging of cardCarousel since the cards were not flipping and showcasing its information. 
+Copilot were used with the creation of this app. They did it in assisting with the debugging/writing of code, and documentation. The full account is in AI-USAGE.md
 
 ## Licence
 

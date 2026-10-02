@@ -72,6 +72,8 @@ class TarotCardWidgetState extends State<TarotCardWidget>
 
   @override
   Widget build(BuildContext context) {
+    final devicePixelRatio = MediaQuery.devicePixelRatioOf(context);
+
     return GestureDetector(
       onTap: () {
         if (_isFlipped) {
@@ -95,9 +97,25 @@ class TarotCardWidgetState extends State<TarotCardWidget>
                 ? Transform(
                     transform: Matrix4.identity()..rotateY(pi),
                     alignment: Alignment.center,
-                    child: Image.asset(widget.cardFaceImage, fit: BoxFit.cover),
+                    child: LayoutBuilder(
+                      builder: (context, constraints) => Image.asset(
+                        widget.cardFaceImage,
+                        cacheWidth: constraints.hasBoundedWidth
+                            ? (constraints.maxWidth * devicePixelRatio).round()
+                            : null,
+                        fit: BoxFit.cover,
+                      ),
+                    ),
                   )
-                : Image.asset(widget.cardBackImage, fit: BoxFit.cover),
+                : LayoutBuilder(
+                    builder: (context, constraints) => Image.asset(
+                      widget.cardBackImage,
+                      cacheWidth: constraints.hasBoundedWidth
+                          ? (constraints.maxWidth * devicePixelRatio).round()
+                          : null,
+                      fit: BoxFit.cover,
+                    ),
+                  ),
           );
         },
       ),
