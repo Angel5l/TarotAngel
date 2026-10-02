@@ -125,6 +125,7 @@ reverse - Meaning of the card with the reverse orientation
 - **What it does and why it is built this way:**
 It stores the tarot's id, name, type, description, descriptionR, imagePath, imagePathR for each of the tarot cards available.
 id - Number associated with the card
+name - Name of the card
 type - whether it is major or minor
 description - short meaning when upright
 descriptionR - short meaning when reversed
