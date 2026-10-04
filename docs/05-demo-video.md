@@ -2,7 +2,7 @@
 
 **File:** `demo.mp4` in this folder, or the hosted link (see below)
 **Length:** aim for 3 to 5 minutes
-**Recorded on:** the device you used
+**Recorded on:** Desktop & Phone
 
 ## What it shows
 
