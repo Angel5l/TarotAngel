@@ -1,7 +1,7 @@
 # Demo video
 
 **File:** ['demo.mp4'](https://github.com/Angel5l/TarotAngel/blob/main/docs/assets/demo.mp4)
-**Length:** aim for 3 to 5 minutes
+**Length:** 2:17 Minutes
 **Recorded on:** Desktop & Phone
 
 ## What it shows
