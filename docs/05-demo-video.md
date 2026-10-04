@@ -1,7 +1,7 @@
 # Demo video
 
 **File:** ['demo.mp4'](https://github.com/Angel5l/TarotAngel/blob/main/docs/assets/demo.mp4)
-**Length:** 2:17 Minutes
+**Length:** 3 Minutes
 **Recorded on:** Desktop & Phone
 
 ## What it shows
@@ -13,7 +13,7 @@ A short list, in order, so a viewer can skip to what they need:
 - 0:22 tarotDetail.dart Page
 - 0:47 cardTinder.dart / Swiper Page
 - 1:05 cardCarousel.dart or Summary Page
-- 2:10 Favorite Feature
+- 2:12 Favorite Feature
 
 ## Getting it into the repo
 
