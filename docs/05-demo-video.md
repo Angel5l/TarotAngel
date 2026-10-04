@@ -1,6 +1,6 @@
 # Demo video
 
-**File:** `demo.mp4` in this folder, or the hosted link (see below)
+**File:** ['demo.mp4'](https://github.com/Angel5l/TarotAngel/blob/main/docs/assets/demo.mp4)
 **Length:** aim for 3 to 5 minutes
 **Recorded on:** Desktop & Phone
 
@@ -9,11 +9,11 @@
 A short list, in order, so a viewer can skip to what they need:
 
 - 0:00 what the app is and who it is for
-- 0:20 ...
-- 1:10 ...
-
-Cover, in this order: the main user journey end to end, anything that only works
-on a real device (camera, GPS, sensors), and the thing you are proudest of.
+- 0:14 home.dart and Search Bar
+- 0:22 tarotDetail.dart Page
+- 0:47 cardTinder.dart / Swiper Page
+- 1:05 cardCarousel.dart or Summary Page
+- 2:10 Favorite Feature
 
 ## Getting it into the repo
 
