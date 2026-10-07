@@ -57,7 +57,7 @@ If your app is fully local with no backend, mark every row N/A and say so once.
 | 21 | No student number, personal email, phone number or home address in the repository or in commit messages | NO | Local commit metadata contains the author's personal email address; no student number, phone number, or home address was found in the reviewed files. |
 | 22 | No classmate's personal data in the repository | YES | Reviewed app data and screenshots; they contain tarot content and app screens, not classmates' personal information. |
 | 23 | Dependencies come from pub.dev, and `build/` and `.dart_tool/` are gitignored | YES | `pubspec.lock` resolves hosted packages from `pub.dev`; `.gitignore` excludes `build/` and `.dart_tool/`. |
-| 24 | Images, fonts and other assets are mine, licensed, or credited | NO | README credits packages and says the tarot cards are designed by the author, but the repository does not document the sources or licenses for all image and font assets. |
+| 24 | Images, fonts and other assets are mine, licensed, or credited | YES | Images are mine, and the respective authors are mentioned in the README.md and AI-USAGE |
 | 25 | Repository visibility is deliberate, and I checked it after my last push | YES | The public GitHub repository is visible, and the README states that public visibility is intentional. |
 
 ## Anything I found and fixed
