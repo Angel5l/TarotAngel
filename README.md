@@ -116,7 +116,8 @@ Documentations
 
 - Packages: see `pubspec.yaml`
 ricardodalarme.com | flutter_card_swiper: ^7.2.0
-flutter.dev | flutter_svg 
+flutter.dev | flutter_svg
+Google Fonts | Merriweather, Playfair Display, Spectral
 
 ## AI use
 
